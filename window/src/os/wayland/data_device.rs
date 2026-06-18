@@ -113,7 +113,10 @@ impl DataDeviceHandler for WaylandState {
             }
             // The compositor sends the selection event once per client.
             // ref: https://github.com/wezterm/wezterm/issues/6685
-            self.copy_paste_offer.lock().unwrap().confirm_selection(offer);
+            self.copy_paste_offer
+                .lock()
+                .unwrap()
+                .confirm_selection(offer);
         }
     }
 

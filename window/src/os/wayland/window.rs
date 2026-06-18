@@ -448,7 +448,11 @@ impl WindowOps for WaylandWindow {
             // Clone the Arc before dropping the borrow so get_clipboard_data can re-borrow
             // wayland_state internally (so we don't have to pass all state manually).
             let copy_paste_offer = conn.wayland_state.borrow().copy_paste_offer.clone();
-            match copy_paste_offer.lock().unwrap().get_clipboard_data(clipboard) {
+            match copy_paste_offer
+                .lock()
+                .unwrap()
+                .get_clipboard_data(clipboard)
+            {
                 Ok(read) => {
                     std::thread::spawn(move || {
                         let mut promise = promise.lock().unwrap();
